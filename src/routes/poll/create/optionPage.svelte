@@ -1,7 +1,7 @@
 <script>
     export let optionList = [];
 
-    let newItem = "";
+    export let newItem = "";
 
     function addToList() {
         if (newItem === "") return;

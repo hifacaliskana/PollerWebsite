@@ -1,6 +1,5 @@
 <script>
   import { onMount } from "svelte";
-
   ///
   import OptionPage from "./optionPage.svelte";
 
@@ -9,14 +8,17 @@
   let showTextArea = false;
   let optionList;
   let optionTypePoll;
+  let newItem;
   let modal1;
   let question;
-  let description;
-  let alldata = [];
+  let description = "";
+  let currentQuestion = {};
+
   onMount(() => {
     optionTypePoll.selectedIndex = 0;
     modal1.style.display = "block";
   });
+
   ///
   function changeInMultipleChoice() {
     if (optionTypePoll.selectedIndex == 0) {
@@ -25,25 +27,42 @@
       modal1.style.display = "none";
     }
   }
-  function nextQuestion() {
-    alldata.push({
+
+  function addData() {
+    currentQuestion = {
       question: question.value,
       description: description?.value ?? "",
       optionList: optionList.map((e) => e.text),
-    });
+    };
+    nextPage();
   }
 
-  async function sendAllData() {
+  async function nextQuestion() {
+    addData();
+    console.log(currentQuestion);
     const res = await fetch("/poll/submit", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       redirect: "follow",
-      body: JSON.stringify(alldata),
+      body: JSON.stringify(currentQuestion),
     });
-   // console.log(res);
+    const data = await res.json();
+    console.log(data);
+    currentQuestion = {};
   }
+
+  function nextPage() {
+    question.value = "";
+    showTextArea = false;
+    newItem = "";
+    optionList = [...optionList.splice(optionList.length, optionList.length)];
+    optionTypePoll.selectedIndex = 0;
+    modal1.style.display = "block";
+  }
+
+  async function sendAllData() {}
 </script>
 
 <!--    TITLE   -->
@@ -54,7 +73,7 @@
 
 <!--    FORM   -->
 <form id="formGeneral" on:submit|preventDefault>
-  <br /><label class="titleForForm" style="color:white" for="">Title</label><br
+  <br /><label class="titleForForm" style="color:black" for="">Title</label><br
   /><br />
   <input
     bind:this={question}
@@ -62,7 +81,7 @@
     placeholder="Type your question here"
   /><br /><br /><br />
 
-  <label class="titleForForm" style="color:white" for=""
+  <label class="titleForForm" style="color:black" for=""
     >Description (optionel)</label
   ><br /><br />
 
@@ -76,14 +95,14 @@
     <textarea name="" id="textArea" bind:this={description} /><br /><br />
   {/if}
 
-  <strong style="color: white;">Question type</strong><br /><br />
+  <strong style="color: black;">Question type</strong><br /><br />
 
   <select on:change={changeInMultipleChoice} bind:this={optionTypePoll}>
     {#each optionsType as value}<option {value}>{value}</option>{/each}
   </select><br /><br />
 
   <div class="modal1 notDisplay" bind:this={modal1}>
-    <OptionPage bind:optionList />
+    <OptionPage bind:optionList bind:newItem />
   </div>
   <br /><br />
 
@@ -126,9 +145,5 @@
   input {
     width: 20vw;
     height: 5vh;
-  }
-
-  a {
-    color: white;
   }
 </style>

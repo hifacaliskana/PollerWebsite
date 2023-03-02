@@ -1,5 +1,5 @@
 <body>
-    <form method="POST" action='Login-Page'>
+    <form method="POST" action='login'>
         <!-- Headings for the form -->
         <div class="headingsContainer">
             <h3>Sign in</h3>
@@ -31,7 +31,7 @@
             <button type="submit">Login</button>
 
             <!-- Sign up link -->
-            <p class="register">Not a member?  <a href="/">Register here!</a></p>
+            <p class="register">Not a member?  <a href="/register">Register here!</a></p>
 
         </div>
 
@@ -52,11 +52,11 @@ form{
     color:whitesmoke;
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
-    background-color: rgba(11, 15, 13, 0.582);
+    background-color: rgba(11, 15, 13, 0.75);
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.125);
+   
     padding: 20px 25px;
-    margin-top: 25px;
+    margin-top: 100px;
 }
 
 input[type=text], input[type=text]{
@@ -68,7 +68,7 @@ input[type=text], input[type=text]{
   }
 
 button {
-    background-color: rgb(9, 10, 42);
+    background-color: rgb(14, 88, 39);
     color: white;
     padding: 14px 20px;
     border-radius: 5px;
@@ -87,7 +87,7 @@ button:hover {
 }
 
 .headingsContainer p{
-    color: gray;
+    color: #FCF1E1;
 }
 .mainContainer{
     padding: 16px;
@@ -108,7 +108,7 @@ button:hover {
 
 
 .forgotpsd a{
-    color: rgb(74, 146, 235);
+    color: rgb(94, 9, 141);
   }
   
 .forgotpsd a:link{
