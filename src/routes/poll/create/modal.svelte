@@ -11,6 +11,8 @@
   let newItem;
   let modal1;
   let question;
+  let pollName;
+  let pollNameTitle;
   let description = "";
   let currentQuestion = {};
 
@@ -30,6 +32,7 @@
 
   function addData() {
     currentQuestion = {
+      pollName: pollName.value,
       question: question.value,
       description: description?.value ?? "",
       optionList: optionList.map((e) => e.text),
@@ -38,6 +41,7 @@
   }
 
   async function nextQuestion() {
+    console.log("hifa")
     addData();
     console.log(currentQuestion);
     const res = await fetch("/poll/submit", {
@@ -60,6 +64,8 @@
     optionList = [...optionList.splice(optionList.length, optionList.length)];
     optionTypePoll.selectedIndex = 0;
     modal1.style.display = "block";
+    pollName.style.display = "none";
+    pollNameTitle.style.display = "none";
   }
 
   async function sendAllData() {}
@@ -73,6 +79,15 @@
 
 <!--    FORM   -->
 <form id="formGeneral" on:submit|preventDefault>
+
+  <br /><label bind:this={pollNameTitle} class="titleForPollName" style="color:black" for="">Name of Poll</label><br
+  /><br />
+  <input
+    bind:this={pollName}
+    name="title"
+    placeholder="Type your name of poll here"
+  /><br /><br />
+  
   <br /><label class="titleForForm" style="color:black" for="">Title</label><br
   /><br />
   <input

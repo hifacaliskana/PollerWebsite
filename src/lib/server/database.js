@@ -15,8 +15,8 @@ export async function CheckUser(username, password) {
 }
 
 export async function isLogin(username, password) {
-  if(CheckUser(username, password) != "") return true
-  else return false
+  if (CheckUser(username, password) != "") return true;
+  else return false;
 }
 
 export async function CreateSession(sessionId, user_id) {
@@ -30,10 +30,20 @@ export async function AddUser(email, password, username) {
   return GetQuery(query);
 }
 
+export async function UserId(username, password) {
+  const query = `select id from userinfo where username='${username}' and password='${password}'`;
+  return GetQuery(query);
+}
 
-export async function AddPoll(user_id, name, id) {
-  const query = `insert into polls (user_id, name, id) 
-                    values('${user_id}', '${name}', '${id}')`;
+
+export async function PollId(name) {
+  const query = `select id from polls where name='${name}'`;
+  return GetQuery(query);
+}
+
+export async function AddPoll(user_id, name) {
+  const query = `insert into polls (user_id, name) 
+                    values('${user_id}','${name}')`;
   return GetQuery(query);
 }
 
