@@ -74,3 +74,14 @@ export async function AddOptions(option, question_id) {
                     values('${option}', '${question_id}')`;
   return GetQuery(query);
 }
+
+export async function QuestionIdFromQuestions(question, poll_id) {
+  const query = `select id from questions where question='${question}' and poll_id='${poll_id}'`
+  return GetQuery(query);
+}
+
+export async function AddDescription(description, question_id) {
+  const query = `insert into descriptions (description, question_id) 
+                    values('${description}','${question_id}')`;
+  return GetQuery(query);
+}

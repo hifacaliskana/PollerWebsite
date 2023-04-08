@@ -6,7 +6,6 @@
 <div class="title">
 
 <h1>Question</h1>
-<h1>{data.pollName}</h1>
 
 <!--<h1>Question {data.login}</h1>-->
 

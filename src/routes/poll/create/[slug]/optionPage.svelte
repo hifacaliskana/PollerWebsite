@@ -5,8 +5,6 @@
   function addToList() {
     if (newItem === "") return;
     optionList = [...optionList, { text: newItem }];
-    console.log(" 🍟  ");
-    console.log(optionList);
     newItem = "";
   }
 

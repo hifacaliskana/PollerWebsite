@@ -115,7 +115,7 @@
   </select><br /><br />
 
   <div class="modal1" bind:this={modal1}>
-    <OptionPage name="option" bind:optionList bind:newItem />
+    <OptionPage bind:optionList bind:newItem />
   </div>
 
   <input

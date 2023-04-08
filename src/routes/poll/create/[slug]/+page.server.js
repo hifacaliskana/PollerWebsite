@@ -1,7 +1,9 @@
-import { redirect } from "@sveltejs/kit";
 import { AddQuestion } from "$lib/server/database";
 import { UserIdFromSessions } from "$lib/server/database";
 import { PollIdFromPolls } from "$lib/server/database";
+import { QuestionIdFromQuestions } from "$lib/server/database";
+import { AddOptions } from "$lib/server/database";
+import { AddDescription } from "$lib/server/database";
 
 /** @type {import('./$types').PageLoad} */
 export function load({ params, cookies }) {
@@ -19,16 +21,23 @@ export const actions = {
     let session = formData.get("session");
     let pollName = formData.get("pollName");
     let options = JSON.parse(formData.get("options"));
-    console.log("---------------");
+    let description = formData.get("description");
 
-    for (let i = 0; i < options.length; i++) {
-      console.log(options[i].text);
-    }
-
-    console.log("---------------");
+    console.log(description)
 
     const user_id = await UserIdFromSessions(session);
     const poll_id = await PollIdFromPolls(user_id[0].user_id, pollName);
     AddQuestion(question, poll_id[0].id);
+
+    let question_id = await QuestionIdFromQuestions(question, poll_id[0].id);
+    AddDescription(description, question_id[0].id);
+
+    for (let i = 0; i < options.length; i++) {
+      console.log(options[i].text);
+      console.log(question_id[0].id)
+      AddOptions(options[i].text, question_id[0].id)
+    }
   },
 };
+
+
