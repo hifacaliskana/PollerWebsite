@@ -47,20 +47,30 @@ export async function AddPoll(user_id, name) {
   return GetQuery(query);
 }
 
-export async function AddQuestion(id, question, poll_id) {
-  const query = `insert into questions (id, question, poll_id) 
-                    values('${id}', '${question}', '${poll_id}')`;
+export async function AddQuestion(question, poll_id) {
+  const query = `insert into questions (question, poll_id) 
+                    values('${question}', '${poll_id}')`;
   return GetQuery(query);
 }
 
-export async function AddDescription(description, id, question_id) {
-  const query = `insert into questions (description, id, question_id) 
-                    values('${description}', '${id}', '${question_id}')`;
+export async function NumberOfQustion(poll_id) {
+  const query = `select count(*) from polls where poll_id='${poll_id}'`
   return GetQuery(query);
 }
 
-export async function AddAnswer(id, answer, question_id) {
-  const query = `insert into questions (id, answer, question_id) 
-                    values('${id}', '${answer}', '${question_id}')`;
+export async function UserIdFromSessions(session_id) {
+  const query = `select user_id from sessions where id='${session_id}'`
+  return GetQuery(query);
+}
+
+
+export async function PollIdFromPolls(user_id, name) {
+  const query = `select id from polls where user_id='${user_id}' and name='${name}'`
+  return GetQuery(query);
+}
+
+export async function AddOptions(option, question_id) {
+  const query = `insert into options (option, question_id) 
+                    values('${option}', '${question_id}')`;
   return GetQuery(query);
 }

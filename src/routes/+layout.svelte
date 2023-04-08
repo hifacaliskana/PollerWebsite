@@ -9,8 +9,8 @@
     </div>
 
     <nav>
-      <a class="headerlink" href="/"><th>Home</th></a>
-      <a class="headerlink" href="/poll/create"><th>Create Poll</th></a>
+      <a class="headerlink" href="/">Home</a>
+      <a class="headerlink" href="/poll/create">Create Poll</a>
     </nav>
   </div>
 </header>
@@ -30,7 +30,6 @@
     margin-right: 25px;
     text-decoration: none;
     color: white;
-    font-family: "Comic Sans MS", cursive, sans-serif;
   }
   a:hover {
     color: aqua;
