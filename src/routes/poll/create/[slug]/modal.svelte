@@ -136,7 +136,6 @@
   #formGeneral {
     position: relative;
     width: 60vw;
-    height: 100vh;
     text-align: center;
     margin-left: 20vw;
     border-radius: 5px;

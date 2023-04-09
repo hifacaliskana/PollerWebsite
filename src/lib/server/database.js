@@ -85,3 +85,14 @@ export async function AddDescription(description, question_id) {
                     values('${description}','${question_id}')`;
   return GetQuery(query);
 }
+
+export async function UsernameFromUserInfo(user_id) {
+  const query = `select username from userinfo where id='${user_id}'`
+  return GetQuery(query);
+}
+
+export async function PollNameFromPolls(user_id) {
+  const query = `select name from polls where user_id='${user_id}'`
+  return GetQuery(query);
+}
+

@@ -10,7 +10,6 @@
 
     <nav>
       <a class="headerlink" href="/">Home</a>
-      <a class="headerlink" href="/poll/create">Create Poll</a>
     </nav>
   </div>
 </header>
