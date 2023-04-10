@@ -6,7 +6,7 @@ import { AddOptions } from "$lib/server/database";
 import { AddDescription } from "$lib/server/database";
 
 /** @type {import('./$types').PageLoad} */
-export function load({ params, cookies }) {
+export async function load({ params, cookies }) {
   return {
     title: params.slug,
     login: cookies.get("sessionId"),
@@ -23,19 +23,19 @@ export const actions = {
     let options = JSON.parse(formData.get("options"));
     let description = formData.get("description");
 
-    console.log(description)
+    console.log(options)
 
     const user_id = await UserIdFromSessions(session);
     const poll_id = await PollIdFromPolls(user_id[0].user_id, pollName);
-    AddQuestion(question, poll_id[0].id);
+    await AddQuestion(question, poll_id[0].id);
 
     let question_id = await QuestionIdFromQuestions(question, poll_id[0].id);
-    AddDescription(description, question_id[0].id);
-
+    await AddDescription(description, question_id[0].id);
+    
     for (let i = 0; i < options.length; i++) {
       console.log(options[i].text);
       console.log(question_id[0].id)
-      AddOptions(options[i].text, question_id[0].id)
+      await AddOptions(options[i].text, question_id[0].id)
     }
   },
 };

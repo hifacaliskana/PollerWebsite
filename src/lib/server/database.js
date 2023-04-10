@@ -24,9 +24,9 @@ export async function CreateSession(sessionId, user_id) {
   return GetQuery(query);
 }
 
-export async function AddUser(email, password, username) {
-  const query = `insert into userinfo (email, password, username) 
-                    values('${email}', '${password}', '${username}')`;
+export async function AddUser(username, email, password) {
+  const query = `insert into userinfo (username, email, password) 
+                    values('${username}', '${email}', '${password}')`;
   return GetQuery(query);
 }
 
@@ -63,7 +63,6 @@ export async function UserIdFromSessions(session_id) {
   return GetQuery(query);
 }
 
-
 export async function PollIdFromPolls(user_id, name) {
   const query = `select id from polls where user_id='${user_id}' and name='${name}'`
   return GetQuery(query);
@@ -95,4 +94,22 @@ export async function PollNameFromPolls(user_id) {
   const query = `select name from polls where user_id='${user_id}'`
   return GetQuery(query);
 }
+
+export async function QuestionNumber(poll_id) {
+  const query = `select count(distinct id) from questions where poll_id='${poll_id}'`
+  return GetQuery(query);
+}
+
+export async function Questions(poll_id) {
+  const query = `select * from questions where poll_id='${poll_id}'`
+  return GetQuery(query);
+}
+
+
+export async function Options() {
+  const query = `select * from options`
+  return GetQuery(query);
+}
+
+
 

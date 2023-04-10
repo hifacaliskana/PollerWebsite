@@ -20,7 +20,7 @@ export const actions = {
       let myuuid = uuidv4();
       cookies.set("sessionId", myuuid)
 
-      CreateSession(myuuid, user_id[0].id)
+      await CreateSession(myuuid, user_id[0].id)
       throw redirect(302, "/profile");
     }
 

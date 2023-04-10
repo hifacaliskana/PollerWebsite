@@ -19,7 +19,7 @@ export const actions = {
     const user_id = await UserIdFromSessions(session);
   
     // Add poll name
-    AddPoll(user_id[0].user_id, title)
+    await AddPoll(user_id[0].user_id, title)
     cookies.set("pollName", title)
 
     throw redirect(303, `/poll/create/${++count}`);

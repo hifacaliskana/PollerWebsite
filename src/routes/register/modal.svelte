@@ -20,7 +20,7 @@
       <br /><br />
 
       <!-- Email -->
-      <label for="username">Your email</label>
+      <label for="email">Your email</label>
       <input type="text" placeholder="Enter email" name="email" required />
 
       <br /><br />

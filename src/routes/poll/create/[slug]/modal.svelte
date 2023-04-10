@@ -31,6 +31,8 @@
 
   $: optionListValue = JSON.stringify(optionList);
 
+
+
   onMount(() => {
     optionTypePoll.selectedIndex = 0;
     modal1.style.display = "block";
@@ -63,6 +65,7 @@
   async function sendAllData() {
     goto("/poll/submit");
   }
+  
 </script>
 
 <!--    FORM   -->

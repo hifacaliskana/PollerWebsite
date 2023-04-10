@@ -29,6 +29,7 @@
     margin-right: 25px;
     text-decoration: none;
     color: white;
+    font-size: 20px;
   }
   a:hover {
     color: aqua;
