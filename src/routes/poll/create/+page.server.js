@@ -12,7 +12,6 @@ export function load({ cookies }) {
 
 export const actions = {
   default: async ({cookies, request}) => {
-    let count = 0;
     const formData = await request.formData();
     let title = formData.get("title");
     let session = formData.get("session");
@@ -22,6 +21,6 @@ export const actions = {
     await AddPoll(user_id[0].user_id, title)
     cookies.set("pollName", title)
 
-    throw redirect(303, `/poll/create/${++count}`);
+    throw redirect(303, `/poll/create/form`);
   },
 };

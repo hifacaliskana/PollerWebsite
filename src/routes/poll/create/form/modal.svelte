@@ -10,7 +10,7 @@
   import { goto } from "$app/navigation";
   ///
 
-  let optionsType = ["Multiple Choice", "Description"];
+  let optionsType = ["Multiple Choice", "Optional Choice" ,"Description"];
   let optionList;
   let optionTypePoll;
   let newItem;
@@ -41,7 +41,7 @@
   ///
 
   function changeInMultipleChoice() {
-    if (optionTypePoll.selectedIndex == 0) {
+    if (optionTypePoll.selectedIndex == 0 || optionTypePoll.selectedIndex == 1) {
       modal1.style.display = "block";
     } else {
       modal1.style.display = "none";
@@ -69,7 +69,7 @@
 </script>
 
 <!--    FORM   -->
-<form id="formGeneral" action="/poll/create/{1}" method="POST">
+<form id="formGeneral" action="/poll/create/form" method="POST">
   <input
     class="trickForSendSession notDisplay"
     type="text"
