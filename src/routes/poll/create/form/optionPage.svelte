@@ -14,14 +14,16 @@
   }
 </script>
 
-<input bind:value={newItem} type="text" placeholder="Option for poll.." /><br />
-<button on:click={addToList} type="button">Add Option</button>
+<input bind:value={newItem} type="text" placeholder="Option for poll.." /><br
+/><br />
+<button on:click={addToList} type="button"><strong>+ </strong>Add Option</button
+>
 
 <br />
 
 {#each optionList as item, index}
-  <span class:checked={item.status}>{item.text}</span>
-  <button on:click={() => removeFromList(index)}>❌</button>
+  <span class:checked={item.status}><strong>{item.text}</strong></span>
+  <button style="width:7.5vw" on:click={() => removeFromList(index)}>❌</button>
   <br />
 {/each}
 
@@ -35,10 +37,16 @@
     background-color: rgb(9, 10, 42);
     color: white;
     margin-top: 10px;
+    width: 50vw;
   }
 
   input {
-    width: 20vw;
+    width: 50vw;
     height: 5vh;
+  }
+
+  span {
+    width: 50vw;
+    margin-right: 10px;
   }
 </style>

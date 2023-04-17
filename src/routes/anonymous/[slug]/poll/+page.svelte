@@ -1,15 +1,11 @@
 <script>
-  import { onMount } from "svelte";
   import { goto } from "$app/navigation";
-  let url = ``;
-
-  onMount(() => (url = window.location.href));
-
   export let data;
+
   const { questions } = data;
   const { options } = data;
-  let cnt = false;
 
+  let cnt = false;
   let descriptionArea;
   let description = "";
 
@@ -29,12 +25,12 @@
   }
 
   function sendPoll() {
-    goto(`/anonymous/${data.poll_id}`);
+    goto(`/anonymous/${data.poll_id}/poll/finish`);
   }
 </script>
 
 <div class="pollName">
-  <h1>{data.poll_name}</h1>
+  <h1>{data.pollDetails.name}</h1>
 </div>
 
 <div class="pollTable">
@@ -72,8 +68,8 @@
     {/if}
   {/each}
 
-  <br /><br /> <button on:click={sendPoll}>Share the poll</button><br /><br
-  /><br />
+  <br /><br /> <button on:click={sendPoll}><strong>Save</strong></button><br
+  /><br /><br />
 </div>
 
 <style>

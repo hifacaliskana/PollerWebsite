@@ -1,5 +1,5 @@
 <body>
-  <form method="POST" action='./'>
+  <form method="POST" action="./">
     <!-- Headings for the form -->
     <div class="headingsContainer">
       <h3>Sign in</h3>
@@ -42,7 +42,6 @@
   </form>
 </body>
 
-
 <style>
   body {
     font-family: sans-serif;
@@ -50,14 +49,11 @@
   }
 
   form {
-    width: 35rem;
+    width: 50rem;
     margin: auto;
     color: whitesmoke;
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
     background-color: rgba(11, 15, 13, 0.75);
     border-radius: 12px;
-
     padding: 20px 25px;
     margin-top: 100px;
   }
@@ -69,6 +65,7 @@
     border-radius: 5px;
     padding: 15px 18px;
     box-sizing: border-box;
+    font-size: 16px;
   }
 
   button {
@@ -105,7 +102,6 @@
   }
 
   .subcontainer a {
-    font-size: 16px;
     margin-bottom: 12px;
   }
 
@@ -130,16 +126,12 @@
     text-decoration: none;
   }
 
-  /* Media queries for the responsiveness of the page */
-  @media screen and (max-width: 600px) {
-    form {
-      width: 25rem;
-    }
+  label {
+    font: 16px/1.5 Arial, sans-serif;
   }
 
-  @media screen and (max-width: 400px) {
-    form {
-      width: 20rem;
-    }
+  p,
+  h3 {
+    font: 16px/1.5 Arial, sans-serif;
   }
 </style>

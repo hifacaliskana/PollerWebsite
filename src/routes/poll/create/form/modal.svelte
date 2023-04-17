@@ -10,7 +10,7 @@
   import { goto } from "$app/navigation";
   ///
 
-  let optionsType = ["Multiple Choice", "Optional Choice" ,"Description"];
+  let optionsType = ["Multiple Choice", "Optional Choice", "Description"];
   let optionList;
   let optionTypePoll;
   let newItem;
@@ -24,14 +24,12 @@
   let trickForSendPollName;
   let trickForSendOptions;
 
-  let sessionId = data.login;
+  let sessionId = data.sessionId;
   let pollName = data.pollName;
 
-  let options;
+  let questionType;
 
   $: optionListValue = JSON.stringify(optionList);
-
-
 
   onMount(() => {
     optionTypePoll.selectedIndex = 0;
@@ -41,7 +39,10 @@
   ///
 
   function changeInMultipleChoice() {
-    if (optionTypePoll.selectedIndex == 0 || optionTypePoll.selectedIndex == 1) {
+    if (
+      optionTypePoll.selectedIndex == 0 ||
+      optionTypePoll.selectedIndex == 1
+    ) {
       modal1.style.display = "block";
     } else {
       modal1.style.display = "none";
@@ -65,7 +66,6 @@
   async function sendAllData() {
     goto("/poll/submit");
   }
-  
 </script>
 
 <!--    FORM   -->
@@ -87,7 +87,8 @@
     bind:this={trickForSendPollName}
   />
 
-  <br /><label class="titleForForm" style="color:black" for="">Question</label
+  <br /><label class="titleForForm" style="color:black" for=""
+    ><strong>Question</strong></label
   ><br /><br />
   <input
     bind:this={question}
@@ -97,7 +98,7 @@
   /><br /><br /><br />
 
   <label class="titleForForm" style="color:black" for=""
-    >Description (optionel)</label
+    ><strong>Description (optionel)</strong></label
   ><br /><br />
 
   <button
@@ -113,7 +114,12 @@
 
   <strong style="color: black;">Question type</strong><br /><br />
 
-  <select on:change={changeInMultipleChoice} bind:this={optionTypePoll}>
+  <select
+    on:change={changeInMultipleChoice}
+    bind:this={optionTypePoll}
+    name="questionType"
+    bind:value={questionType}
+  >
     {#each optionsType as value}<option {value}>{value}</option>{/each}
   </select><br /><br />
 
@@ -131,7 +137,7 @@
   />
 
   <br /><br />
-  <button type="submit">Next Question</button>
+  <button type="submit">Next Question</button><br /><br />
   <button on:click={sendAllData}>Submit</button>
 </form>
 
@@ -139,27 +145,32 @@
   #formGeneral {
     position: relative;
     width: 60vw;
-    text-align: center;
-    margin-left: 20vw;
+    text-align: left;
+    margin-left: 27vw; /* Sola dayamak için margin-left değerini artırabilirsiniz */
     border-radius: 5px;
+  }
+
+  form select {
+    width: 50vw;
+    padding: 10px;
   }
 
   #textArea {
     resize: none;
-    width: 20vw;
+    width: 50vw;
     height: 6vh;
   }
 
   button {
     background-color: rgb(72, 6, 39);
-    width: 15vw;
+    width: 50vw;
     color: white;
     size: medium;
     cursor: pointer;
   }
 
   input {
-    width: 20vw;
+    width: 50vw;
     height: 5vh;
   }
 </style>

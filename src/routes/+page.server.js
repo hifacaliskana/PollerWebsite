@@ -2,10 +2,10 @@ import { CheckUser } from "$lib/server/database";
 import { UserId } from "$lib/server/database";
 import { CreateSession } from "$lib/server/database";
 import { redirect } from "@sveltejs/kit";
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 export const actions = {
-  default: async ({cookies, request}) => {
+  default: async ({ cookies, request }) => {
     // TODO log the user in
     const formData = await request.formData();
     let username = formData.get("username");
@@ -14,17 +14,14 @@ export const actions = {
     const user = await CheckUser(username, password);
 
     if (user != "") {
-      
-      const user_id = await UserId(username, password)
-      // sessionId oluşturur.
+      const user_id = await UserId(username, password);
+
       let myuuid = uuidv4();
-      cookies.set("sessionId", myuuid)
+      cookies.set("sessionId", myuuid);
+      await CreateSession(myuuid, user_id[0].id);
 
-      await CreateSession(myuuid, user_id[0].id)
       throw redirect(302, "/profile");
-    }
-
-    else {
+    } else {
       throw redirect(302, "/poll/create");
     }
   },

@@ -36,8 +36,8 @@
   }
   body {
     /*background-image: url("/survey.jpg");*/
-    
-    background:  #FCF1E1;
+
+    background: #fcf1e1;
     background-size: cover;
     width: 100%;
     height: 100%;

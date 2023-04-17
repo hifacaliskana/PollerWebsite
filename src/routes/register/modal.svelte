@@ -71,7 +71,7 @@
   }
 
   form {
-    width: 35rem;
+    width: 50rem;
     margin: auto;
     color: whitesmoke;
     backdrop-filter: blur(16px) saturate(180%);
@@ -93,7 +93,7 @@
   }
 
   button {
-    background-color:  rgb(14, 88, 39);
+    background-color: rgb(14, 88, 39);
     color: white;
     padding: 14px 20px;
     border-radius: 5px;
@@ -112,7 +112,7 @@
   }
 
   .headingsContainer p {
-    color: #FCF1E1;
+    color: #fcf1e1;
   }
   .mainContainer {
     padding: 16px;
@@ -138,16 +138,12 @@
     text-decoration: none;
   }
 
-  /* Media queries for the responsiveness of the page */
-  @media screen and (max-width: 600px) {
-    form {
-      width: 25rem;
-    }
+  label {
+    font: 16px/1.5 Arial, sans-serif;
   }
 
-  @media screen and (max-width: 400px) {
-    form {
-      width: 20rem;
-    }
+  p,
+  h3 {
+    font: 16px/1.5 Arial, sans-serif;
   }
 </style>
